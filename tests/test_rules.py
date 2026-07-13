@@ -20,3 +20,12 @@ def test_sqli_variant_and_detected():
 def test_clean_login_not_flagged():
     assert scan("student") == []
     assert scan("password123") == []
+    
+def test_xss_detected():
+    assert "XSS-001" in scan("<script>alert('XSS');</script>")
+def test_xss_variant_detected():
+    assert "XSS-001" in scan("<ScRiPt>alert('XSS');</sCrIpT>")
+def test_clean_search_not_flagged():
+    assert scan("cybersecurity internship") == []
+
+    
