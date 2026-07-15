@@ -27,5 +27,19 @@ def test_xss_variant_detected():
     assert "XSS-001" in scan("<ScRiPt>alert('XSS');</sCrIpT>")
 def test_clean_search_not_flagged():
     assert scan("cybersecurity internship") == []
-
+def test_lfi_traversal_detected():
+    assert "LFI-001" in scan("../../etc/passwd")
+def test_lfi_variant_detected():
+    assert "LFI-001" in scan("..\\..\\..\\Windows\\System32\\drivers\\etc\\hosts")
+def test_cmdi_semicolon_detected():
+    assert "CMDI-001" in scan("ls; cat /etc/passwd")
+def test_cmdi_pipe_detected():
+    assert "CMDI-001" in scan("cat /etc/passwd | grep root")
+def test_cmdi_ampersand_detected():
+    assert "CMDI-001" in scan("echo hello && whoami")
+def test_cmdi_false_positive_check():
+    assert scan("Johnson & Johnson") == []
+def test_lfi_clean_filename_not_flagged():
+    assert scan("index.html") == []
+        
     
