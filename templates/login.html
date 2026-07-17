@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head><title>Login</title></head>
+<body>
+  <h1>Login</h1>
+  <form method="POST" action="/login">
+    <input type="text" name="username" placeholder="username"><br>
+    <input type="password" name="password" placeholder="password"><br>
+    <button type="submit">Sign in</button>
+  </form>
+  {% if message %}<p>{{ message }}</p>{% endif %}
+  <p><a href="/">Home</a></p>
+</body>
+</html>
