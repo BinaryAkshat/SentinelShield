@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head><title>File Viewer</title></head>
+<body>
+  <h1>File Viewer</h1>
+  <form method="GET" action="/file">
+    <input type="text" name="name" value="{{ filename or '' }}"><br>
+    <button type="submit">View file</button>
+  </form>
+  <pre>{{ content }}</pre>
+  <p><a href="/">Home</a></p>
+</body>
+</html>

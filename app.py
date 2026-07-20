@@ -16,7 +16,7 @@ def waf_gate():
 def home():
     return render_template("index.html")
 
-@app.route("/login", methods=["POST"])
+@app.route("/login", methods=["GET", "POST"])
 def login():
     message = None
     if request.method == "POST":
@@ -33,6 +33,24 @@ def search():
     query = request.args.get("q", "")
     results = [f"Result for '{query}' #1", f"Result for '{query}' #2"] if query else []
     return render_template("search.html", query=query, results=results)
+
+@app.route("/file")
+def file_view():
+    filename = request.args.get("name", "")
+    if filename:
+        content = f"[simulated] Contents of '{filename}' would appear here."
+    else:
+        content = ""
+    return render_template("file.html", filename=filename, content=content)
+
+@app.route("/ping")
+def ping_tool():
+    host = request.args.get("host", "")
+    if host:
+        result = f"[simulated] Ping results for '{host}' would appear here."
+    else:
+        result = ""
+    return render_template("ping.html", host=host, result=result)
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000)

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head><title>Ping</title></head>
+<body>
+  <h1>Ping</h1>
+  <form method="GET" action="/ping">
+    <input type="text" name="host" value="{{ host or '' }}"><br>
+    <button type="submit">Ping</button>
+  </form>
+  <pre>{{ result }}</pre>
+  <p><a href="/">Home</a></p>
+</body>
+</html>
