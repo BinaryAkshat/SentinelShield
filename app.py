@@ -52,5 +52,33 @@ def ping_tool():
         result = ""
     return render_template("ping.html", host=host, result=result)
 
+@app.route("/dashboard")
+def dashboard():
+    logs = logger.read_all_logs()
+    
+    total = len(logs)
+    blocked = sum(1 for r in logs if r["action"] == "BLOCKED")
+    allowed = total - blocked
+    
+    category_counts = {}
+    ip_counts = {}
+    for r in logs:
+        if r["category"]:
+            category_counts[r["category"]] = category_counts.get(r["category"], 0) + 1
+        if r["action"] == "BLOCKED":
+            ip_counts[r["ip"]] = ip_counts.get(r["ip"], 0) + 1
+            
+    recent = list(reversed(logs))[:20]
+    
+    return render_template(
+        "dashboard.html",
+        total=total,
+        blocked=blocked,
+        allowed=allowed,
+        category_counts=category_counts,
+        ip_counts=ip_counts,
+        recent=recent
+    )
+
 if __name__ == "__main__":
     app.run(debug=True, port=5000)
