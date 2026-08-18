@@ -253,3 +253,28 @@ The practical demonstrated the exact sequence from the original project brief:
 **Improvement:**
 - Email/Slack alerts when blocked count exceeds threshold
 - Spike detection: compare hourly block rate to 7-day average, alert on >200% increase
+## 8. Personal Reflection & Learning Outcomes
+
+### What I Understood Better Through Building
+
+1. **Attack Signatures**: Regex feels like a blunt instrument until you realize it's exact enough for known-pattern matching. Understanding *why* real WAFs use regex (not AI, not parsing) changed how I think about rule-based systems.
+
+2. **Rate Limiting Edge Cases**: The sliding window vs. fixed bucket decision taught me that even simple algorithms have subtle tradeoffs. Cool-down timing, threshold tuning, false positives on legitimate users — these are real production headaches.
+
+3. **Logging as a Security Tool**: I used to think logs were just for debugging. Realizing that a well-structured log is the entire evidence trail for forensics and auditing was a shift.
+
+### If I Were to Do This Again
+
+1. Start with a state machine diagram for the WAF decision logic (before coding)
+2. Implement encoding-detection early, not as an afterthought
+3. Build a testing harness that can replay log entries to verify detection
+
+### How This Connects to Real Security Work
+
+A real WAF (ModSecurity, AWS WAF) does exactly this at scale: signature matching, rate limiting, structured logging. The main differences are:
+- Distributed systems (handles millions of requests/sec)
+- Machine learning added on top (behavioral detection)
+- Integration with SIEM/alerting systems
+- Regular rule updates from threat intel feeds
+
+This practical proved I understand the *core* that all of that is built on.

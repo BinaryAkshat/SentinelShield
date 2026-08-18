@@ -1,0 +1,11 @@
+[33m0f39305[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m)[m Complete practical journal with all sections: architecture, execution, logs, interpretation, statistics, and improvement suggestions
+[33m48bc867[m Add /dashboard route with Chart.js visualizations for attack analytics
+[33me65c87e[m Fix /login methods to accept GET and POST; add SQLi detection evidence
+[33m1b38e35[m Wire middleware into Flask app; fix reason-string casing
+[33me44e865[m Add structured CSV logging with passing unit tests
+[33m99d68cf[m Add sliding-window rate limiter with passing unit tests
+[33me3d1a65[m Add LFI and CMDI rules with tests; narrow CMDI to known-command list after false-positive check
+[33m5056b14[m Add XSS script-tag rule with passing unit tests
+[33me5ad7f6[m Add SQLi tautology rule with passing unit tests
+[33me32dbb0[m Remove accidentally tracked venv, fix gitignore
+[33md086c99[m Initial project scaffold: folder structure, venv, gitignore
